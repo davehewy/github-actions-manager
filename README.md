@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GitHub Actions Manager
 
-## Getting Started
+A beautiful dashboard for monitoring and managing GitHub Actions workflows across your organizations.
 
-First, run the development server:
+## Features
+
+- **Organization Selection**: Switch between your personal account and any organization you belong to
+- **Real-time Monitoring**: Auto-refresh every 30 seconds with live status indicators
+- **Workflow Overview**: See all workflow runs across all repositories in one view
+- **Status Filtering**: Filter by running, queued, successful, or failed workflows
+- **Job Details**: Expand any workflow to see individual job steps and their status
+- **Build Logs**: View build logs directly in the dashboard
+- **Quick Actions**: Re-run workflows, retry failed jobs, or cancel running builds with one click
+- **Responsive Design**: Works great on desktop and mobile
+
+## Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Styling**: Tailwind CSS + shadcn/ui components
+- **Authentication**: NextAuth.js with GitHub OAuth
+- **API Client**: Octokit (official GitHub SDK)
+- **Language**: TypeScript
+
+## Setup
+
+### 1. Create a GitHub OAuth App
+
+1. Go to [GitHub Developer Settings](https://github.com/settings/developers)
+2. Click "New OAuth App"
+3. Fill in the details (adjust port as needed):
+   - **Application name**: GitHub Actions Manager (or your preferred name)
+   - **Homepage URL**: `http://localhost:YOUR_PORT`
+   - **Authorization callback URL**: `http://localhost:YOUR_PORT/api/auth/callback/github`
+4. Click "Register application"
+5. Generate a new client secret
+
+### 2. Configure Environment Variables
+
+Copy the example environment file:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Edit `.env.local` with your values:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+GITHUB_ID=your_github_oauth_app_client_id
+GITHUB_SECRET=your_github_oauth_app_client_secret
+NEXTAUTH_URL=http://localhost:YOUR_PORT
+NEXTAUTH_SECRET=your_random_secret_string
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Generate a secure NEXTAUTH_SECRET:
 
-## Learn More
+```bash
+openssl rand -base64 32
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Install Dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Run the Development Server
 
-## Deploy on Vercel
+```bash
+npm run dev -- -p YOUR_PORT
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open `http://localhost:YOUR_PORT` in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Usage
+
+1. Click "Sign in with GitHub" on the landing page
+2. Authorize the app to access your GitHub account
+3. Select an organization or your personal account from the dropdown
+4. Browse your workflow runs, filter by status, and manage your builds
+
+## Required GitHub Permissions
+
+The app requests the following OAuth scopes:
+
+- `read:user` - Read user profile information
+- `user:email` - Access email addresses
+- `read:org` - List organizations
+- `repo` - Access repositories (needed for workflow management)
+- `workflow` - Manage workflow runs
+
+## Development
+
+```bash
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
+
+# Type check
+npx tsc --noEmit
+```
+
+## Deployment
+
+This app can be deployed to any platform that supports Next.js:
+
+- [Vercel](https://vercel.com) (recommended)
+- [Netlify](https://netlify.com)
+- [Railway](https://railway.app)
+- Self-hosted with Docker
+
+Remember to update the OAuth callback URL in your GitHub OAuth App settings to match your production URL.
+
+## License
+
+MIT

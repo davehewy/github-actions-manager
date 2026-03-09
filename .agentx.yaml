@@ -1,0 +1,50 @@
+# namespace: my-project  # Set a stable namespace to survive directory moves
+
+project:
+  base_branch: main
+  model: opus
+
+  sandbox:
+    mount_docker: false
+    env:
+      - ANTHROPIC_API_KEY
+
+  #   # Pre-built image (skips sandbox build)
+  #   image: ""
+  #   # Custom Dockerfile path
+  #   dockerfile: ".agentx/Dockerfile"
+  #   # Apt packages to install in sandbox
+  #   packages: []
+
+  remote:
+    name: origin
+  #   target_branch: main  # PR target (defaults to base_branch)
+
+  pr:
+    draft: false
+    commit_prefix: feat
+  #   exclude_co_author: false
+  #   exclude_agent_id: false
+  #   template: ""              # Custom PR body template (relative to project root, e.g. ".agentx/pr-template.md")
+  #   title_template: ""        # Custom title template (Go template string)
+
+  # review:
+  #   diff_review:
+  #     enabled: false
+  #     timeout: "10m"
+  #     model: "sonnet"
+  #     instructions: |
+  #       Focus on:
+  #       - Security vulnerabilities
+  #       - Error handling
+  #       - Test coverage gaps
+
+  # issues:
+  #   github:
+  #     ready_label: "agent-ready"
+  #     taken_label: "agent-working"
+  #     complete_label: "agent-done"
+
+  # fleet:
+  #   workers: 3
+  #   auto_approve: false
