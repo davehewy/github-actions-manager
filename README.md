@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GitHub Actions Manager
+
+> **Status:** v0.1.0 — Early development. No production features are implemented yet.
+> This project is under active development. Expect breaking changes.
+
+## Why This Exists
+
+Managing GitHub Actions across multiple repositories is painful. The built-in GitHub UI is scoped to individual repositories, which means there is no centralized way to:
+
+- **Monitor workflow runs** across all your repos in one place
+- **Spot failures quickly** without clicking through each repository
+- **Compare workflow performance** or identify patterns across projects
+- **Manage and trigger workflows** from a single dashboard
+
+GitHub Actions Manager aims to solve this by providing a dedicated web interface for cross-repository Actions management — a single pane of glass for everything GitHub Actions.
+
+## Planned Features
+
+The following features are planned but not yet implemented:
+
+- **Dashboard overview** — At-a-glance status of all monitored repositories and their latest workflow runs
+  <!-- Screenshot: Dashboard overview — add to docs/screenshots/dashboard.png when available -->
+
+- **Workflow run monitoring** — Live view of running, queued, and completed workflow runs with status indicators
+  <!-- Screenshot: Workflow runs list — add to docs/screenshots/workflows.png when available -->
+
+- **Cross-repository view** — Aggregate workflows from multiple repositories into a unified, filterable list
+  <!-- Screenshot: Cross-repo dashboard — add to docs/screenshots/cross-repo.png when available -->
+
+- **Run details and log viewer** — Drill into individual runs to view logs, job breakdowns, and timing data
+  <!-- Screenshot: Run details view — add to docs/screenshots/run-details.png when available -->
+
+- **Dark mode** — Full dark mode support for late-night CI debugging sessions
+  <!-- Screenshot: Dark mode — add to docs/screenshots/dark-mode.png when available -->
+
+> **Note:** When screenshots are ready, create `docs/screenshots/` and replace the HTML comments above with standard markdown image syntax (e.g., `![Dashboard](docs/screenshots/dashboard.png)`).
+
+## Tech Stack
+
+Versions sourced from `package.json`:
+
+| Technology | Version | Notes |
+|------------|---------|-------|
+| [Next.js](https://nextjs.org) | 16.1.4 | App Router |
+| [React](https://react.dev) | 19.2.3 | |
+| [TypeScript](https://www.typescriptlang.org) | 5 | Strict mode enabled |
+| [Tailwind CSS](https://tailwindcss.com) | 4 | Via PostCSS |
+| [ESLint](https://eslint.org) | 9 | With `next/core-web-vitals` and TypeScript rules |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- **Node.js v20 or later** (LTS recommended) — the project declares `@types/node: ^20`; no `.nvmrc` is configured
+- **npm** — this project uses `package-lock.json` as its lockfile
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/github-actions-manager.git
+cd github-actions-manager
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start the development server with hot reload |
+| `npm run build` | Create an optimized production build |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint across the project |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/
+    layout.tsx      # Root layout with fonts and metadata
+    page.tsx        # Home page
+    globals.css     # Global styles (Tailwind imports)
+    favicon.ico     # App icon
+public/             # Static assets
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Configuration files:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `next.config.ts` — Next.js configuration
+- `tsconfig.json` — TypeScript configuration (path alias: `@/*` maps to `./src/*`)
+- `eslint.config.mjs` — ESLint flat config
+- `postcss.config.mjs` — PostCSS configuration (Tailwind CSS plugin)
 
-## Deploy on Vercel
+## Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- The dev server runs at `http://localhost:3000` with hot module replacement
+- **Path aliases:** Import from `@/*` which resolves to `./src/*`
+- **TypeScript:** Strict mode is enabled
+- **Styling:** Use Tailwind CSS utility classes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+Contributions are welcome once the project reaches a stable foundation. If you'd like to contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feat/your-feature`)
+3. Commit your changes with clear, descriptive messages
+4. Open a pull request against `main`
+
+> **Important:** A license must be chosen and added to this repository before external contributions can be accepted. See the [License](#license) section below.
+
+## Roadmap
+
+- [ ] GitHub OAuth integration
+- [ ] Repository connection and workflow discovery
+- [ ] Dashboard with real-time workflow status
+- [ ] Cross-repository workflow aggregation
+- [ ] Run detail view with log streaming
+- [ ] Notification preferences and alerts
+- [ ] Dark mode toggle
+
+## License
+
+**TODO:** No license has been chosen yet. A `LICENSE` file must be added to this repository before distributing or accepting contributions. Until then, all rights are reserved by default.

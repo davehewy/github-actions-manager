@@ -1,0 +1,6 @@
+time=2026-03-09T15:59:36.111Z level=WARN msg="invalid state transition (warn mode)" from=running to=reviewing error="invalid state transition: cannot transition from running to reviewing"
+time=2026-03-09T15:59:36.122Z level=INFO msg="agent state transition" agent_id=c9f1cc7d from_state=running to_state=reviewing reason=review_started
+time=2026-03-09T15:59:52.163Z level=INFO msg="agent state transition" agent_id=c9f1cc7d from_state=reviewing to_state=reconciling reason=reconciliation_started
+time=2026-03-09T15:59:52.238Z level=WARN msg="watcher terminal state not yet persisted; retrying" agent_id=c9f1cc7d runtime_state=completed agent_state=reconciling
+time=2026-03-09T16:01:20.113Z level=INFO msg="agent state transition" agent_id=c9f1cc7d from_state=reconciling to_state=awaiting_review_approval reason=reconciliation_completed
+time=2026-03-09T16:03:57.400Z level=INFO msg="agent state transition" agent_id=c9f1cc7d from_state=running to_state=completed reason=""
