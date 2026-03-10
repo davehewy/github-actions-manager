@@ -4,8 +4,13 @@ project:
   base_branch: main
   model: opus
 
+  # prompt:
+  #   normal_session_addendum: |
+  #     Keep progress updates brief.
+  #     Prefer concise summaries over long narration.
+
   sandbox:
-    mount_docker: false
+    mount_docker: true
     env:
       - ANTHROPIC_API_KEY
 

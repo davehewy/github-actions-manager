@@ -1,0 +1,25 @@
+# Deny all by default — only canonical configs are tracked.
+# Runtime artifacts (status.json, agent.log, plan.md, etc.) are automatically ignored.
+# To track a new canonical file type, add a !filename rule below.
+
+*
+
+# This file itself
+!.gitignore
+
+# Canonical agent instructions
+!AGENTS.md
+
+# Skills (definitions and scripts)
+!skills/
+!skills/**
+
+# Subdirectory instruction overrides
+!overrides/
+!overrides/**
+
+# Custom sandbox image
+!Dockerfile
+
+# PR body template
+!pr-template.md

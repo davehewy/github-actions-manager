@@ -1,4 +1,0 @@
-time=2026-03-10T12:26:30.564Z level=WARN msg="invalid state transition (warn mode)" from=running to=reviewing error="invalid state transition: cannot transition from running to reviewing"
-time=2026-03-10T12:26:30.575Z level=INFO msg="agent state transition" agent_id=62054138 from_state=running to_state=reviewing reason=review_started
-time=2026-03-10T12:26:40.310Z level=INFO msg="agent state transition" agent_id=62054138 from_state=reviewing to_state=awaiting_plan_approval reason=review_approved
-time=2026-03-10T12:31:26.130Z level=INFO msg="agent state transition" agent_id=62054138 from_state=running to_state=completed reason=""
